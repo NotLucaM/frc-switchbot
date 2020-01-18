@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcJava (in project switchbot)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "switchbot",
+    "language": "java"
+  }
+]
