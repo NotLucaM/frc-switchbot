@@ -82,9 +82,9 @@ public class LimeLight {
         }
 
         double verticalAngleToTarget = getPitchToTarget();
-        double targetHeight = 20;
-        double limeLightHeight = 22;
-        return (targetHeight - limeLightHeight) / Math.tan(Math.toRadians(verticalAngleToTarget));
+        double targetHeight = 16;
+        double limeLightHeight = 20.5;
+        return (targetHeight - limeLightHeight) / Math.tan(Math.toRadians(7.1 + verticalAngleToTarget));
     }
 
     public void setLEDMode(LimelightControlMode.LedMode ledMode) {

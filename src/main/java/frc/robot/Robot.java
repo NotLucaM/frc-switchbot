@@ -10,6 +10,7 @@ package frc.robot;
 import com.esotericsoftware.minlog.Log;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
@@ -19,6 +20,8 @@ public class Robot extends TimedRobot {
     private CANSparkMax rightMotorMaster = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
     private CANSparkMax rightMotorSlave1 = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
     private CANSparkMax rightMotorSlave2 = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+    private Joystick joystick1 = new Joystick(0);
+    private Joystick joystick2 = new Joystick(1);
 
     @Override
     public void robotInit() {
@@ -29,6 +32,8 @@ public class Robot extends TimedRobot {
 
         Log.setLogger(new RobotLogger());
         Log.set(1);
+
+//        LimeLight.getInstance().setPipeline(2);
     }
 
     @Override
@@ -38,14 +43,17 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-        Log.debug("Limelight", "Distance: " + LimeLight.getInstance().getDistanceToTarget());
-        Log.debug("Limelight", "Pitch: " + LimeLight.getInstance().getPitchToTarget());
+//        Log.debug("Limelight", "Distance: " + LimeLight.getInstance().getDistanceToTarget());
+//        Log.debug("Limelight", "Pitch: " + LimeLight.getInstance().getPitchToTarget());
+
+        leftMotorMaster.set(0.3 * (joystick1.getY() - joystick2.getX()));
+        rightMotorMaster.set(-0.3 * (joystick1.getY() + joystick2.getX()));
     }
 
     @Override
     public void teleopInit() {
-        LimeLight.getInstance().setLEDMode(LimelightControlMode.LedMode.FORCE_ON);
-        LimeLight.getInstance().setCamMode(LimelightControlMode.CamMode.VISION);
+//        LimeLight.getInstance().setLEDMode(LimelightControlMode.LedMode.FORCE_ON);
+//        LimeLight.getInstance().setCamMode(LimelightControlMode.CamMode.VISION);
         Log.trace("Robot", "Teleop Started");
     }
 
